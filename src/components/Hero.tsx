@@ -31,7 +31,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation, onExploreService
         aria-hidden="true"
       >
         <source src={heroVideo} type="video/mp4" />
-        <source src="/hero.mp4" type="video/mp4" />
       </video>
 
       {/* 

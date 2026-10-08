@@ -1,189 +1,130 @@
-import React, { useState } from 'react';
-import { ArrowLeft, ArrowUpRight, Filter, BookOpen, Layers, CheckCircle2, X } from 'lucide-react';
-import logoImg from '../assets/logo-white-text.png';
+import React, { useState, useEffect } from 'react';
+import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { Project } from '../data/content';
 import { CaseStudyModal } from './CaseStudyModal';
+import defaultData from '../../data/portfolio.json';
 
 interface PortfolioPageProps {
   onBackToHome: () => void;
   onOpenConsultation: () => void;
 }
 
-interface PortfolioArchiveItem {
+export interface PortfolioPageItem {
   id: string;
-  slug: string;
+  num?: string;
   title: string;
+  category: string;
   client: string;
-  fullName: string;
-  category: 'Sustainability Report' | 'Annual Report' | 'ESG & PROPER' | 'Communication';
   year: string;
   image: string;
-  aspectRatio: string;
-  cardSpan: 'standard' | 'tall' | 'wide';
+  aspectRatio?: string;
+  rotation?: string;
   summary: string;
-  frameworks: string[];
-  deliverables: string[];
-  keyOutcomes: string[];
-  code: string;
+  frameworks?: string[];
+  matchedProject?: Project;
+  code?: string;
+  slug?: string;
+  deliverables?: string[];
+  keyOutcomes?: string[];
+  fullName?: string;
 }
-
-const ARCHIVE_PROJECTS: PortfolioArchiveItem[] = [
-  {
-    id: 'kideco-23-sr',
-    slug: 'kideco-sustainability-report-2023',
-    title: 'Sustainability Report',
-    client: 'Kideco Jaya Agung',
-    fullName: 'PT Kideco Jaya Agung',
-    category: 'Sustainability Report',
-    year: '2023',
-    image: '/Kideco-23-SR-a-768x576.png',
-    aspectRatio: '768 / 576',
-    cardSpan: 'wide',
-    summary: 'Landmark sustainability reporting charting post-mining ecosystem rehabilitation, energy transition, and PROPER Emas alignment.',
-    frameworks: ['GRI Standards 2021', 'POJK 51', 'PROPER Emas', 'TCFD'],
-    deliverables: ['Full Sustainability Report (320 pages)', 'Executive Summary', 'Digital Interactive PDF'],
-    keyOutcomes: ['Beyond compliance environmental ratings', 'Biodiversity regeneration indices', 'Regional stakeholder validation'],
-    code: 'KDC-SR23',
-  },
-  {
-    id: 'kideco-24-ar',
-    slug: 'kideco-annual-report-2024',
-    title: 'Annual Report',
-    client: 'Kideco Jaya Agung',
-    fullName: 'PT Kideco Jaya Agung',
-    category: 'Annual Report',
-    year: '2024',
-    image: '/Kideco-24-AR-a-768x512.png',
-    aspectRatio: '768 / 512',
-    cardSpan: 'standard',
-    summary: 'Forward-looking corporate annual report spotlighting green business acceleration, operational innovation, and stakeholder transparency.',
-    frameworks: ['GRI Sector Standards', 'POJK 51', 'ISSB Aligned'],
-    deliverables: ['Annual Financial & Governance Report', 'Interactive Annex', 'Investor Deck'],
-    keyOutcomes: ['Net Zero 2060 roadmap alignment', 'Executive financial hierarchy', 'Audited governance metrics'],
-    code: 'KDC-AR24',
-  },
-  {
-    id: 'asbi-23',
-    slug: 'asuransi-bintang-annual-report-2023',
-    title: 'Annual Report',
-    client: 'Asuransi Bintang',
-    fullName: 'PT Asuransi Bintang Tbk',
-    category: 'Annual Report',
-    year: '2023',
-    image: '/ASBI-23-a-768x576.png',
-    aspectRatio: '768 / 576',
-    cardSpan: 'standard',
-    summary: 'Comprehensive annual financial and corporate governance disclosure balancing strict regulatory requirements with editorial precision.',
-    frameworks: ['OJK POJK 51', 'GRI Standards', 'IDX Governance'],
-    deliverables: ['Annual Financial & Governance Report', 'Interactive Digital PDF', 'Executive Highlights'],
-    keyOutcomes: ['100% timely regulatory compliance', 'Transparent underwriting ratios', 'Typographic editorial clarity'],
-    code: 'ASBI-23',
-  },
-  {
-    id: 'kideco-24-sr',
-    slug: 'kideco-sustainability-campaign-2024',
-    title: 'Sustainability Campaign & Report',
-    client: 'Kideco Jaya Agung',
-    fullName: 'PT Kideco Jaya Agung',
-    category: 'Sustainability Report',
-    year: '2024',
-    image: '/Kideco-24-SR-a-768x614.png',
-    aspectRatio: '768 / 614',
-    cardSpan: 'tall',
-    summary: 'Multi-stakeholder sustainability publication highlighting circular economy models, clean energy adoption, and biodiversity preservation.',
-    frameworks: ['GRI Standards 2021', 'UN SDGs', 'POJK 51'],
-    deliverables: ['Full Sustainability Report', 'Digital Presentation Suite', 'Stakeholder Collaterals'],
-    keyOutcomes: ['Data-dense infographics', 'Social return on investment proof', 'Verified stakeholder outreach'],
-    code: 'KDC-SR24',
-  },
-  {
-    id: 'star-24',
-    slug: 'star-energy-esg-communication-2024',
-    title: 'ESG Communication',
-    client: 'STAR Energy Geothermal',
-    fullName: 'Star Energy Geothermal Group',
-    category: 'Communication',
-    year: '2024',
-    image: '/STAR-24-a-768x576.png',
-    aspectRatio: '768 / 576',
-    cardSpan: 'standard',
-    summary: 'Clean energy communication and stakeholder publication framing geothermal excellence, clean power generation, and community co-existence.',
-    frameworks: ['GRI Energy Sector', 'Renewable ESG Disclosure', 'Community Dialogue'],
-    deliverables: ['Clean Energy Communication Report', 'Executive Briefing Suite', 'Stakeholder Infographics'],
-    keyOutcomes: ['Geothermal milestone visualization', 'Carbon avoidance metrics', 'Public-private dialog tool'],
-    code: 'STAR-24',
-  },
-  {
-    id: 'wtjj-24',
-    slug: 'wika-tirta-jaya-company-profile-2024',
-    title: 'Company Profile & Annual Review',
-    client: 'Wika Tirta Jaya Jatiluhur',
-    fullName: 'PT Wika Tirta Jaya Jatiluhur',
-    category: 'Annual Report',
-    year: '2024',
-    image: '/WTJJ-24-1-768x699.jpg',
-    aspectRatio: '768 / 699',
-    cardSpan: 'standard',
-    summary: 'Drinking water infrastructure project reporting, tracking critical pipeline development and safe water supply access for Greater Jakarta.',
-    frameworks: ['UN SDG 6', 'Infrastructure Disclosure', 'POJK 51'],
-    deliverables: ['Infrastructure Annual Review', 'Company Profile Suite', 'Impact Infographics'],
-    keyOutcomes: ['Safe water access for 2M+ citizens', 'Construction ESG mitigation', 'Stringent infrastructure governance'],
-    code: 'WTJJ-24',
-  },
-  {
-    id: 'kideco-23-ar',
-    slug: 'kideco-annual-report-2023',
-    title: 'Annual Report',
-    client: 'Kideco Jaya Agung',
-    fullName: 'PT Kideco Jaya Agung',
-    category: 'Annual Report',
-    year: '2023',
-    image: '/Kideco-23-AR-a-768x576.png',
-    aspectRatio: '768 / 576',
-    cardSpan: 'tall',
-    summary: 'Corporate operational and financial report framing large-scale energy transition, industrial efficiency, and strategic resource governance.',
-    frameworks: ['GRI Standards', 'POJK 51', 'Corporate Governance'],
-    deliverables: ['Annual Report Dossier', 'Executive Presentation Deck', 'Digital Summary'],
-    keyOutcomes: ['Energy efficiency benchmarks', 'Risk mitigation frameworks', 'Executive financial typography'],
-    code: 'KDC-AR23',
-  },
-];
 
 export const PortfolioPage: React.FC<PortfolioPageProps> = ({
   onBackToHome,
   onOpenConsultation,
 }) => {
+  // Use the exact same portfolio dataset as the homepage Portfolio section
+  const [items, setItems] = useState<PortfolioPageItem[]>(
+    () => (defaultData as any).portfolio || []
+  );
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [activeProject, setActiveProject] = useState<Project | null>(null);
 
+  useEffect(() => {
+    let isMounted = true;
+    async function loadPortfolioData() {
+      try {
+        const response = await fetch('/api/portfolio');
+        if (response.ok) {
+          const data = await response.json();
+          if (isMounted && Array.isArray(data) && data.length > 0) {
+            setItems(data);
+          }
+        }
+      } catch (error) {
+        console.warn('[PortfolioPage] Error loading /api/portfolio, using fallback data:', error);
+      }
+    }
+
+    loadPortfolioData();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   const categories = [
     'All',
-    'Sustainability Report',
     'Annual Report',
+    'Sustainability Report',
     'Communication',
+    'ESG & PROPER',
   ];
 
   const filteredItems =
     selectedCategory === 'All'
-      ? ARCHIVE_PROJECTS
-      : ARCHIVE_PROJECTS.filter((item) => item.category === selectedCategory);
+      ? items
+      : items.filter((item) => {
+          const cat = (item.category || '').toLowerCase();
+          const title = (item.title || '').toLowerCase();
+          const target = selectedCategory.toLowerCase();
 
-  const handleOpenDetail = (item: PortfolioArchiveItem) => {
-    // Structure as Project object for CaseStudyModal
+          if (selectedCategory === 'Annual Report') {
+            return cat.includes('annual') || title.includes('annual') || cat.includes('corporate');
+          }
+          if (selectedCategory === 'Sustainability Report') {
+            return cat.includes('sustainab') || title.includes('sustainab');
+          }
+          if (selectedCategory === 'Communication') {
+            return cat.includes('communicat') || cat.includes('campaign') || cat.includes('design');
+          }
+          if (selectedCategory === 'ESG & PROPER') {
+            return cat.includes('esg') || cat.includes('proper');
+          }
+          return cat.includes(target);
+        });
+
+  const handleOpenDetail = (item: PortfolioPageItem) => {
+    // If matchedProject exists, use full case study details
+    if (item.matchedProject) {
+      setActiveProject(item.matchedProject);
+      return;
+    }
+
+    // Fallback: construct case study Project object
     const proj: Project = {
       id: item.id,
-      code: item.code,
+      code: item.code || item.num || item.id.toUpperCase(),
       client: item.client,
-      fullName: item.fullName,
-      category: item.category,
+      fullName: item.fullName || item.client,
+      category: (item.category?.includes('Sustainability')
+        ? 'Sustainability Report'
+        : item.category?.includes('Annual')
+        ? 'Annual Report'
+        : item.category?.includes('ESG')
+        ? 'ESG & PROPER'
+        : 'Communication') as any,
       year: item.year,
-      description: item.summary,
-      highlight: `${item.title} aligned with ${item.frameworks.join(', ')}.`,
-      frameworks: item.frameworks,
-      keyOutcomes: item.keyOutcomes,
+      description: item.summary || '',
+      highlight: `${item.title} aligned with ${(item.frameworks || []).join(', ')}.`,
+      frameworks: item.frameworks || [],
+      keyOutcomes: item.keyOutcomes || [
+        'Full regulatory compliance and transparency',
+        'Executive design system highlighting core benchmarks',
+        'Transparent stakeholder accountability narratives',
+      ],
       color: '#162b1e',
       aspect: 'landscape',
-      deliverables: item.deliverables,
+      deliverables: item.deliverables || ['Executive Report Suite', 'Digital Summary'],
     };
     setActiveProject(proj);
   };
@@ -196,7 +137,7 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({
           {/* Back to Home Button */}
           <button
             onClick={onBackToHome}
-            className="group inline-flex items-center gap-2.5 text-xs sm:text-sm font-semibold uppercase tracking-[0.16em] text-neutral-800 hover:text-[#188F42] transition-colors py-2 focus:outline-none focus:ring-2 focus:ring-[#188F42] rounded-md px-1"
+            className="group inline-flex items-center gap-2.5 text-xs sm:text-sm font-semibold uppercase tracking-[0.16em] text-neutral-800 hover:text-[#188F42] transition-colors py-2 focus:outline-none focus:ring-2 focus:ring-[#188F42] rounded-md px-1 cursor-pointer"
             aria-label="Back to Home"
           >
             <ArrowLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
@@ -206,7 +147,7 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({
           {/* Minimal ASA Media Logo / Brand Link */}
           <button
             onClick={onBackToHome}
-            className="focus:outline-none flex items-center gap-2"
+            className="focus:outline-none flex items-center gap-2 cursor-pointer"
             aria-label="ASA Media Home"
           >
             <div className="w-2 h-2 rounded-full bg-[#188F42]" />
@@ -214,14 +155,14 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({
               ASA MEDIA
             </span>
             <span className="hidden sm:inline-block text-neutral-400 font-mono text-xs">
-              / ARCHIVE
+              / PORTFOLIO
             </span>
           </button>
 
           {/* Right Action: Inquire */}
           <button
             onClick={onOpenConsultation}
-            className="text-xs font-semibold uppercase tracking-[0.16em] text-white bg-neutral-900 hover:bg-[#188F42] px-4 sm:px-5 py-2.5 rounded-full transition-colors shadow-sm"
+            className="text-xs font-semibold uppercase tracking-[0.16em] text-white bg-neutral-900 hover:bg-[#188F42] px-4 sm:px-5 py-2.5 rounded-full transition-colors shadow-sm cursor-pointer"
           >
             Initiate Project
           </button>
@@ -236,7 +177,7 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({
               <div className="flex items-center gap-3 mb-6">
                 <span className="w-8 h-[2px] bg-[#188F42]" aria-hidden="true" />
                 <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.28em] text-[#188F42]">
-                  EXHIBITION & ARCHIVE
+                  SELECTED WORK
                 </span>
               </div>
 
@@ -261,7 +202,7 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-4 py-2 rounded-xl text-xs font-medium tracking-wide transition-all duration-200 whitespace-nowrap ${
+                  className={`px-4 py-2 rounded-xl text-xs font-medium tracking-wide transition-all duration-200 whitespace-nowrap cursor-pointer ${
                     selectedCategory === cat
                       ? 'bg-neutral-900 text-white shadow-sm'
                       : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100'
@@ -275,94 +216,107 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({
         </div>
       </section>
 
-      {/* 3. FULL PORTFOLIO COLLECTION — ASYMMETRIC EDITORIAL GRID */}
+      {/* 3. UNIFORM EDITORIAL GRID — ALL CARDS IDENTICAL EQUAL SIZE */}
       <main className="w-full py-16 sm:py-24 flex-1">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 items-start">
-            {filteredItems.map((item, index) => {
-              const isWide = item.cardSpan === 'wide';
-              return (
-                <article
-                  key={item.id}
-                  onClick={() => handleOpenDetail(item)}
-                  className={`group relative cursor-pointer rounded-[20px] overflow-hidden bg-white border border-neutral-200/80 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_24px_48px_rgba(0,0,0,0.1)] transition-all duration-500 ease-out flex flex-col justify-between ${
-                    isWide ? 'md:col-span-2 lg:col-span-2' : 'col-span-1'
-                  }`}
-                  data-slug={`/portfolio/${item.slug}`}
-                >
-                  {/* Image Presentation */}
-                  <div className="relative w-full overflow-hidden bg-[#ECEAE5] border-b border-neutral-100">
-                    <div
-                      className="relative w-full overflow-hidden"
-                      style={{ aspectRatio: item.aspectRatio }}
-                    >
-                      <img
-                        src={item.image}
-                        alt={`${item.client} — ${item.title}`}
-                        loading={index < 3 ? 'eager' : 'lazy'}
-                        className="w-full h-full object-contain sm:object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                      />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 items-stretch">
+            {filteredItems.length === 0 ? (
+              [1, 2, 3, 4, 5, 6].map((idx) => (
+                <div
+                  key={idx}
+                  className="rounded-[20px] bg-neutral-200/60 aspect-[4/3] animate-pulse border border-neutral-200/40"
+                />
+              ))
+            ) : (
+              filteredItems.map((item, index) => {
+                const codeBadge = item.matchedProject?.code || item.num || String(index + 1).padStart(2, '0');
+                return (
+                  <article
+                    key={item.id}
+                    onClick={() => handleOpenDetail(item)}
+                    className="group relative cursor-pointer rounded-[20px] overflow-hidden bg-white border border-neutral-200/80 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] transition-all duration-500 ease-out flex flex-col justify-between h-full"
+                  >
+                    {/* Top Container: Unified Equal Image Container (aspect-[4/3]) */}
+                    <div>
+                      <div className="relative w-full aspect-[4/3] overflow-hidden bg-[#ECEAE5] border-b border-neutral-100">
+                        <img
+                          src={item.image}
+                          alt={`${item.client} — ${item.title}`}
+                          loading={index < 3 ? 'eager' : 'lazy'}
+                          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                          onError={(e) => {
+                            // Fallback container background if image error
+                            (e.target as HTMLElement).style.opacity = '0.5';
+                          }}
+                        />
 
-                      {/* Top Right Year Pill */}
-                      <div className="absolute top-4 right-4 z-10 flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/85 backdrop-blur-md border border-white/60 shadow-sm">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#188F42]" />
-                        <span className="text-[10px] font-mono font-medium tracking-wider text-neutral-800">
-                          {item.year}
-                        </span>
-                      </div>
-                    </div>
+                        {/* Top Right Year Pill */}
+                        <div className="absolute top-4 right-4 z-10 flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md border border-white/60 shadow-sm pointer-events-none">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#188F42]" />
+                          <span className="text-[10px] font-mono font-medium tracking-wider text-neutral-800">
+                            {item.year}
+                          </span>
+                        </div>
 
-                    {/* Desktop Floating Liquid-Glass Preview Panel */}
-                    <div
-                      className="hidden sm:block absolute inset-x-4 bottom-4 z-20 rounded-[16px] p-5 transition-all duration-400 ease-out opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0"
-                      style={{
-                        background: 'rgba(255, 255, 255, 0.28)',
-                        backdropFilter: 'blur(20px) saturate(140%)',
-                        WebkitBackdropFilter: 'blur(20px) saturate(140%)',
-                        border: '1px solid rgba(255, 255, 255, 0.55)',
-                        boxShadow:
-                          'inset 0 1px 1px 0 rgba(255, 255, 255, 0.6), 0 16px 32px -8px rgba(0, 0, 0, 0.16)',
-                      }}
-                    >
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-800 font-semibold">
-                          View Project Details
-                        </span>
-                        <div className="w-6 h-6 rounded-full bg-white text-neutral-900 flex items-center justify-center shadow-sm">
-                          <ArrowUpRight className="w-3.5 h-3.5" />
+                        {/* Top Left Number Pill */}
+                        <div className="absolute top-4 left-4 z-10 px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-md border border-white/60 shadow-sm pointer-events-none">
+                          <span className="text-[10px] font-mono font-bold tracking-tight text-[#188F42]">
+                            #{codeBadge}
+                          </span>
+                        </div>
+
+                        {/* Floating Liquid-Glass Preview on Hover */}
+                        <div
+                          className="hidden sm:block absolute inset-x-3 bottom-3 z-20 rounded-[14px] p-4 transition-all duration-400 ease-out opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0"
+                          style={{
+                            background: 'rgba(255, 255, 255, 0.35)',
+                            backdropFilter: 'blur(20px) saturate(140%)',
+                            WebkitBackdropFilter: 'blur(20px) saturate(140%)',
+                            border: '1px solid rgba(255, 255, 255, 0.65)',
+                            boxShadow:
+                              'inset 0 1px 1px 0 rgba(255, 255, 255, 0.6), 0 14px 28px -6px rgba(0, 0, 0, 0.16)',
+                          }}
+                        >
+                          <div className="flex items-center justify-between mb-1.5">
+                            <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-900 font-bold">
+                              View Case Study
+                            </span>
+                            <div className="w-6 h-6 rounded-full bg-white text-neutral-900 flex items-center justify-center shadow-sm">
+                              <ArrowUpRight className="w-3.5 h-3.5" />
+                            </div>
+                          </div>
+                          <p className="text-[11px] text-neutral-800 line-clamp-2 leading-relaxed font-light">
+                            {item.summary}
+                          </p>
                         </div>
                       </div>
-                      <p className="text-xs text-neutral-800 line-clamp-2 leading-relaxed font-light">
-                        {item.summary}
-                      </p>
-                    </div>
-                  </div>
 
-                  {/* Editorial Card Metadata (Always visible on mobile & desktop) */}
-                  <div className="p-6 sm:p-7 flex flex-col justify-between flex-1">
-                    <div>
-                      <div className="flex items-center justify-between gap-4 mb-2">
-                        <span className="text-[11px] font-mono uppercase tracking-[0.2em] text-[#188F42] font-semibold">
-                          {item.category}
-                        </span>
-                        <span className="text-[11px] font-mono text-neutral-400">
-                          {item.code}
-                        </span>
+                      {/* Card Metadata (Standardized Height and Line Clamps) */}
+                      <div className="p-6">
+                        <div className="flex items-center justify-between gap-3 mb-2">
+                          <span className="text-[11px] font-mono uppercase tracking-[0.16em] text-[#188F42] font-semibold truncate">
+                            {item.category}
+                          </span>
+                        </div>
+
+                        <h2 className="text-lg font-semibold tracking-tight text-neutral-900 mb-1 group-hover:text-[#188F42] transition-colors duration-200 line-clamp-1">
+                          {item.title}
+                        </h2>
+
+                        <p className="text-xs text-neutral-500 font-medium line-clamp-1">
+                          {item.client}
+                        </p>
+
+                        <p className="text-xs text-neutral-600 font-light leading-relaxed mt-3 line-clamp-2 min-h-[2.5rem]">
+                          {item.summary}
+                        </p>
                       </div>
-
-                      <h2 className="text-xl sm:text-2xl font-medium tracking-tight text-neutral-900 mb-1 group-hover:text-[#188F42] transition-colors duration-200">
-                        {item.client} — {item.title}
-                      </h2>
-
-                      <p className="text-xs sm:text-sm text-neutral-600 font-light leading-relaxed mt-2 line-clamp-2">
-                        {item.summary}
-                      </p>
                     </div>
 
-                    {/* Framework Badges & Deep Link Action */}
-                    <div className="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between">
-                      <div className="flex flex-wrap gap-1.5">
-                        {item.frameworks.slice(0, isWide ? 3 : 2).map((fw, fIdx) => (
+                    {/* Bottom Action & Framework Badges (Uniform across every card) */}
+                    <div className="px-6 pb-6 pt-3 border-t border-neutral-100 flex items-center justify-between mt-auto">
+                      <div className="flex flex-wrap gap-1.5 items-center">
+                        {(item.frameworks || []).slice(0, 2).map((fw, fIdx) => (
                           <span
                             key={fIdx}
                             className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-neutral-100 text-neutral-700 border border-neutral-200 font-medium"
@@ -372,15 +326,15 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({
                         ))}
                       </div>
 
-                      <div className="flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-neutral-900 group-hover:text-[#188F42] transition-colors">
+                      <div className="flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-neutral-900 group-hover:text-[#188F42] transition-colors shrink-0">
                         <span>Details</span>
                         <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                       </div>
                     </div>
-                  </div>
-                </article>
-              );
-            })}
+                  </article>
+                );
+              })
+            )}
           </div>
         </div>
       </main>
@@ -389,28 +343,17 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({
       <footer className="w-full bg-[#111111] text-white py-16 border-t border-neutral-800">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 flex flex-col sm:flex-row items-center justify-between gap-8">
           <div>
-            <span className="text-xs font-mono uppercase tracking-[0.25em] text-[#188F42] font-semibold block mb-2">
-              ASA MEDIA ARCHIVE
+            <span className="font-semibold tracking-[-0.03em] text-base text-white uppercase">
+              ASA MEDIA
             </span>
-            <p className="text-sm text-neutral-400 font-light max-w-md">
-              Selected works across corporate disclosure, ESG assurance, and sustainability communication.
+            <p className="text-xs text-neutral-400 font-mono mt-1">
+              Sustainability & Corporate Reporting Consultancy
             </p>
           </div>
 
-          <div className="flex items-center gap-6">
-            <button
-              onClick={onBackToHome}
-              className="text-xs uppercase tracking-wider font-semibold text-neutral-400 hover:text-white transition-colors"
-            >
-              ← Back to Home
-            </button>
-            <button
-              onClick={onOpenConsultation}
-              className="text-xs uppercase tracking-wider font-semibold text-white bg-[#188F42] hover:bg-[#167d3a] px-6 py-3 rounded-full transition-colors shadow-sm"
-            >
-              Initiate Consultation
-            </button>
-          </div>
+          <p className="text-xs text-neutral-500 font-mono">
+            © 2026 ASA Media. All rights reserved.
+          </p>
         </div>
       </footer>
 

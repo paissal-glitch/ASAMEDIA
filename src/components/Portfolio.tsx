@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { CaseStudyModal } from './CaseStudyModal';
 import { Project } from '../data/content';
+import defaultData from '../../data/portfolio.json';
 
 interface PortfolioProps {
   onConsult?: (serviceName?: string) => void;
@@ -22,238 +23,43 @@ interface PortfolioItem {
   frameworks: string[];
   matchedProject?: Project;
 }
-
-const PORTFOLIO_ITEMS: PortfolioItem[] = [
-  {
-    id: 'asbi-23',
-    num: '01',
-    title: 'Annual Report',
-    category: 'Reporting · Design',
-    client: 'Asuransi Bintang',
-    year: '2023',
-    image: '/ASBI-23-a-768x576.png',
-    aspectRatio: '768 / 576',
-    rotation: '-0.75deg',
-    summary: 'Comprehensive annual financial & governance disclosure balancing regulatory adherence with executive clarity.',
-    frameworks: ['OJK POJK 51', 'GRI Standards', 'IDX Governance'],
-    matchedProject: {
-      id: 'asbi',
-      code: 'ASBI',
-      client: 'Asuransi Bintang',
-      fullName: 'PT Asuransi Bintang Tbk',
-      category: 'Annual Report',
-      year: '2023',
-      description: 'Comprehensive annual financial and corporate governance disclosure balancing strict regulatory compliance with executive editorial precision.',
-      highlight: 'Integrated annual performance publication presenting financial resilience and sustainable governance.',
-      frameworks: ['OJK POJK 51', 'GRI Standards 2021', 'IDX Corporate Governance'],
-      keyOutcomes: [
-        '100% compliant with OJK reporting deadlines and disclosure guidelines',
-        'Transparent solvency and underwriting performance narratives',
-        'Award-nominated editorial structure and typographical hierarchy',
-      ],
-      color: '#162b1e',
-      aspect: 'landscape',
-      featuredQuote: 'Articulating financial stability through transparent reporting.',
-      deliverables: ['Annual Financial & Governance Report', 'Interactive Digital PDF', 'Executive Highlights'],
-    },
-  },
-  {
-    id: 'kideco-23-ar',
-    num: '02',
-    title: 'Annual Report',
-    category: 'Reporting · Corporate',
-    client: 'Kideco Jaya Agung',
-    year: '2023',
-    image: '/Kideco-23-AR-a-768x576.png',
-    aspectRatio: '768 / 576',
-    rotation: '0.6deg',
-    summary: 'Corporate operational and financial report framing large-scale energy transition and industrial stewardship.',
-    frameworks: ['GRI Standards', 'POJK 51', 'Corporate Governance'],
-    matchedProject: {
-      id: 'kideco-ar-23',
-      code: 'KIDECO-AR',
-      client: 'Kideco Jaya Agung',
-      fullName: 'PT Kideco Jaya Agung',
-      category: 'Annual Report',
-      year: '2023',
-      description: 'Annual corporate report framing large-scale energy transition, industrial efficiency, and strategic governance in energy production.',
-      highlight: 'Robust annual operational overview demonstrating responsible resource management.',
-      frameworks: ['GRI Standards', 'POJK 51', 'Indonesian Mining Standards'],
-      keyOutcomes: [
-        'Detailed breakdown of energy efficiency and operational resilience',
-        'Rigorous governance and risk mitigation frameworks',
-        'Executive design system highlighting core energy benchmarks',
-      ],
-      color: '#18382b',
-      aspect: 'landscape',
-      deliverables: ['Annual Report Dossier', 'Executive Presentation Deck', 'Digital Summary'],
-    },
-  },
-  {
-    id: 'kideco-23-sr',
-    num: '03',
-    title: 'Sustainability Report',
-    category: 'Reporting · ESG',
-    client: 'Kideco Jaya Agung',
-    year: '2023',
-    image: '/Kideco-23-SR-a-768x576.png',
-    aspectRatio: '768 / 576',
-    rotation: '-0.5deg',
-    summary: 'Benchmark sustainability report charting post-mining ecosystem rehabilitation and PROPER Emas achievements.',
-    frameworks: ['GRI 2021', 'PROPER Emas', 'TCFD', 'POJK 51'],
-    matchedProject: {
-      id: 'kideco',
-      code: 'KIDECO-SR',
-      client: 'Kideco Jaya Agung',
-      fullName: 'PT Kideco Jaya Agung',
-      category: 'Sustainability Report',
-      year: '2023 / 2024',
-      description: 'Benchmark sustainability reporting charting post-mining ecosystem rehabilitation, community empowerment, and PROPER Emas verification.',
-      highlight: 'Beyond compliance reporting aligned with GRI Standards and PROPER Emas verification.',
-      frameworks: ['GRI Standards 2021', 'POJK 51', 'PROPER Emas Alignment', 'TCFD Framework'],
-      keyOutcomes: [
-        'Comprehensive biodiversity restoration & carbon offset metrics',
-        'Detailed social investment impact across regional communities',
-        'Recognized with top regional sustainability disclosure accolades',
-      ],
-      color: '#162b1e',
-      aspect: 'landscape',
-      featuredQuote: 'Transforming industrial stewardship into an authentic, measurable sustainability dialogue.',
-      deliverables: ['Full Sustainability Report (300+ pages)', 'Executive Summary Booklet', 'Digital Interactive PDF'],
-    },
-  },
-  {
-    id: 'kideco-24-ar',
-    num: '04',
-    title: 'Annual Report',
-    category: 'Design · Communication',
-    client: 'Kideco Jaya Agung',
-    year: '2024',
-    image: '/Kideco-24-AR-a-768x512.png',
-    aspectRatio: '768 / 512',
-    rotation: '0.75deg',
-    summary: 'Forward-looking annual report spotlighting green business acceleration, operational innovation, and stakeholder value.',
-    frameworks: ['GRI Sector Standards', 'POJK 51', 'ISSB Aligned'],
-    matchedProject: {
-      id: 'kideco-ar-24',
-      code: 'KIDECO-AR24',
-      client: 'Kideco Jaya Agung',
-      fullName: 'PT Kideco Jaya Agung',
-      category: 'Annual Report',
-      year: '2024',
-      description: 'Forward-looking corporate annual report spotlighting green business acceleration, operational efficiency, and stakeholder transparency.',
-      highlight: 'Modern editorial publication presenting corporate transition milestones.',
-      frameworks: ['GRI Sector Standards', 'POJK 51', 'ISSB Climate Disclosure'],
-      keyOutcomes: [
-        'Strategic alignment with Indonesia Net Zero Emission roadmaps',
-        'Streamlined infographics communicating complex financial metrics',
-        'Integrated bilingual editorial suite',
-      ],
-      color: '#1b2230',
-      aspect: 'landscape',
-      deliverables: ['Annual Report Suite', 'Interactive Web Annex', 'Investor Factsheet'],
-    },
-  },
-  {
-    id: 'kideco-24-sr',
-    num: '05',
-    title: 'Sustainability Campaign',
-    category: 'Campaign · Education',
-    client: 'Kideco Jaya Agung',
-    year: '2024',
-    image: '/Kideco-24-SR-a-768x614.png',
-    aspectRatio: '768 / 614',
-    rotation: '-0.6deg',
-    summary: 'Multi-stakeholder sustainability publication detailing circular economy initiatives and biodiversity conservation.',
-    frameworks: ['GRI 2021', 'SDGs 2030', 'OJK POJK 51'],
-    matchedProject: {
-      id: 'kideco-sr-24',
-      code: 'KIDECO-SR24',
-      client: 'Kideco Jaya Agung',
-      fullName: 'PT Kideco Jaya Agung',
-      category: 'Sustainability Report',
-      year: '2024',
-      description: 'Comprehensive sustainability narrative illustrating circular economy principles, clean water initiatives, and deep ecosystem regeneration.',
-      highlight: 'Deep-dive sustainability publication blending rigorous field data with inspiring visual storytelling.',
-      frameworks: ['GRI Standards 2021', 'UN SDGs', 'POJK 51', 'KLHK PROPER'],
-      keyOutcomes: [
-        'High-density environmental data transformed into intuitive infographics',
-        'Verified community empowerment outcomes across 80+ partner villages',
-        'Editorial design praised by external ESG auditor panels',
-      ],
-      color: '#153020',
-      aspect: 'portrait',
-      deliverables: ['Sustainability Report', 'Executive Summary Deck', 'Social Media Carousel Series'],
-    },
-  },
-  {
-    id: 'star-24',
-    num: '06',
-    title: 'ESG Communication',
-    category: 'Campaign · Communication',
-    client: 'STAR Energy / Star Resources',
-    year: '2024',
-    image: '/STAR-24-a-768x576.png',
-    aspectRatio: '768 / 576',
-    rotation: '0.8deg',
-    summary: 'Clean energy communication and stakeholder publication framing geothermal excellence and community engagement.',
-    frameworks: ['GRI Energy', 'Renewable ESG', 'Stakeholder Dialogue'],
-    matchedProject: {
-      id: 'star',
-      code: 'STAR',
-      client: 'Star Resources',
-      fullName: 'STAR Energy & Resources Ecosystem',
-      category: 'Communication',
-      year: '2024',
-      description: 'Clean energy communication suite framing geothermal leadership, clean power generation, and community co-existence.',
-      highlight: 'Vibrant clean-energy communication inspiring stakeholder confidence.',
-      frameworks: ['GRI Energy Sector', 'Renewable ESG Disclosure', 'Community Dialogue'],
-      keyOutcomes: [
-        'High-impact visual narratives depicting renewable geothermal potential',
-        'Transparent biodiversity and carbon avoidance metrics',
-        'Executive layout designed for investors and regulatory authorities',
-      ],
-      color: '#182433',
-      aspect: 'landscape',
-      deliverables: ['Clean Energy Communication Report', 'Executive Briefing Suite', 'Stakeholder Infographics'],
-    },
-  },
-  {
-    id: 'wtjj-24',
-    num: '07',
-    title: 'Company Profile',
-    category: 'Design · Communication',
-    client: 'Wika Tirta Jaya Jatiluhur',
-    year: '2024',
-    image: '/WTJJ-24-1-768x699.jpg',
-    aspectRatio: '768 / 699',
-    rotation: '-0.7deg',
-    summary: 'Strategic infrastructure profile documenting landmark drinking water supply projects and clean water access.',
-    frameworks: ['UN SDG 6', 'Infrastructure Disclosure', 'POJK 51'],
-    matchedProject: {
-      id: 'wtjj',
-      code: 'WTJJ',
-      client: 'Wika Tirta Jaya Jatiluhur',
-      fullName: 'PT Wika Tirta Jaya Jatiluhur',
-      category: 'Annual Report',
-      year: '2023 / 2024',
-      description: 'Drinking water infrastructure project reporting, tracking critical pipeline development and safe water supply access for Greater Jakarta.',
-      highlight: 'Infrastructure development and SDG 6 (Clean Water and Sanitation) reporting.',
-      frameworks: ['GRI Standards', 'POJK 51', 'SDG Impact Metrics'],
-      keyOutcomes: [
-        'Clear demonstration of socioeconomic impact for 2 million urban beneficiaries',
-        'Construction environmental mitigation and watershed protection narratives',
-        'Stringent infrastructure governance and audit reporting',
-      ],
-      color: '#172738',
-      aspect: 'portrait',
-      deliverables: ['Infrastructure Annual Review', 'Company Profile Suite', 'Impact Infographics'],
-    },
-  },
-];
-
 export const Portfolio: React.FC<PortfolioProps> = ({ onConsult, onNavigateToPortfolio }) => {
+  const [items, setItems] = useState<PortfolioItem[]>(() => (defaultData as any).portfolio || []);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
   const [activeProject, setActiveProject] = useState<Project | null>(null);
+
+  useEffect(() => {
+    let isMounted = true;
+    async function loadPortfolioData() {
+      try {
+        setLoading(true);
+        const response = await fetch('/api/portfolio');
+        if (!response.ok) {
+          throw new Error(`Failed to fetch portfolio data: ${response.statusText}`);
+        }
+        const data = await response.json();
+        if (isMounted) {
+          const list = Array.isArray(data) ? data : (data.portfolio || []);
+          setItems(list);
+        }
+      } catch (err: any) {
+        console.error('[Portfolio] Error loading portfolio data:', err);
+        if (isMounted) {
+          setError(err.message || 'Error loading portfolio');
+        }
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
+      }
+    }
+
+    loadPortfolioData();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   // Render an individual card
   const renderCard = (item: PortfolioItem, keyPrefix: string) => {
@@ -342,7 +148,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onConsult, onNavigateToPor
 
             {/* Framework Badges */}
             <div className="mt-3 pt-2.5 border-t border-white/30 flex flex-wrap gap-1.5 items-center">
-              {item.frameworks.slice(0, 2).map((fw, fIdx) => (
+              {(item.frameworks || []).slice(0, 2).map((fw, fIdx) => (
                 <span
                   key={fIdx}
                   className="text-[9px] sm:text-[10px] font-mono px-2 py-0.5 rounded-md bg-white/60 text-neutral-800 border border-white/40 font-medium"
@@ -395,18 +201,37 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onConsult, onNavigateToPor
         role="region"
         aria-label="Continuous portfolio marquee"
       >
-        {/* Dual duplicated track running seamless CSS translate animation */}
-        <div className="portfolio-marquee-track flex items-center gap-6 sm:gap-8 lg:gap-10 w-max">
-          {/* First sequence of portfolio cards */}
-          <div className="portfolio-track-set flex items-center gap-6 sm:gap-8 lg:gap-10 shrink-0">
-            {PORTFOLIO_ITEMS.map((item) => renderCard(item, 'track-1'))}
+        {loading && items.length === 0 ? (
+          <div className="flex items-center gap-6 sm:gap-8 lg:gap-10 px-6 sm:px-10 lg:px-16 overflow-hidden">
+            {[1, 2, 3].map((idx) => (
+              <div
+                key={idx}
+                className="shrink-0 rounded-[18px] sm:rounded-[20px] bg-neutral-200/60 border border-black/[0.05] animate-pulse"
+                style={{
+                  width: 'clamp(290px, 32vw, 460px)',
+                  aspectRatio: '768 / 576',
+                }}
+              />
+            ))}
           </div>
+        ) : items.length > 0 ? (
+          /* Dual duplicated track running seamless CSS translate animation */
+          <div className="portfolio-marquee-track flex items-center gap-6 sm:gap-8 lg:gap-10 w-max">
+            {/* First sequence of portfolio cards */}
+            <div className="portfolio-track-set flex items-center gap-6 sm:gap-8 lg:gap-10 shrink-0">
+              {items.map((item) => renderCard(item, 'track-1'))}
+            </div>
 
-          {/* Identical cloned sequence for infinite seamless flow */}
-          <div className="portfolio-track-set flex items-center gap-6 sm:gap-8 lg:gap-10 shrink-0" aria-hidden="true">
-            {PORTFOLIO_ITEMS.map((item) => renderCard(item, 'track-2'))}
+            {/* Identical cloned sequence for infinite seamless flow */}
+            <div className="portfolio-track-set flex items-center gap-6 sm:gap-8 lg:gap-10 shrink-0" aria-hidden="true">
+              {items.map((item) => renderCard(item, 'track-2'))}
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="text-center py-12 text-neutral-500 font-mono text-xs">
+            {error ? `Failed to load portfolio: ${error}` : 'No portfolio items found.'}
+          </div>
+        )}
       </div>
 
       {/* UNDERSTATED EDITORIAL CTA (No pagination, no arrows) */}

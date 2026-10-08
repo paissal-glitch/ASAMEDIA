@@ -13,6 +13,7 @@ import { FinalCTA } from './components/FinalCTA';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { ConsultationModal } from './components/ConsultationModal';
+import { AdminPortfolio } from './components/AdminPortfolio';
 
 export default function App() {
   const [currentPath, setCurrentPath] = useState<string>(() => {
@@ -72,6 +73,16 @@ export default function App() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [currentPath]);
+
+  // If path is /admin, render dedicated CMS Admin to manage portfolio.json
+  if (currentPath === '/admin' || currentPath === '/admin/' || currentPath.startsWith('/admin')) {
+    return (
+      <AdminPortfolio
+        onBackToHome={() => navigateTo('/')}
+        onNavigateToPortfolio={() => navigateTo('/portfolio')}
+      />
+    );
+  }
 
   // If path is /portfolio, render dedicated Portfolio Archive experience
   if (currentPath === '/portfolio') {
@@ -142,7 +153,10 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <Footer onOpenConsultation={() => handleOpenConsultation()} />
+      <Footer
+        onOpenConsultation={() => handleOpenConsultation()}
+        onNavigateToAdmin={() => navigateTo('/admin')}
+      />
 
       {/* Consultation Modal */}
       <ConsultationModal

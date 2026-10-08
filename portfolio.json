@@ -1,0 +1,549 @@
+{
+  "portfolio": [
+    {
+      "id": "asbi-23",
+      "num": "01",
+      "title": "Annual Report",
+      "category": "Reporting · Design",
+      "client": "Asuransi Bintang kecilrun",
+      "year": "2023",
+      "image": "/ASBI-23-a-768x576.png",
+      "aspectRatio": "768 / 576",
+      "rotation": "-0.75deg",
+      "summary": "Comprehensive annual financial & governance disclosure balancing regulatory adherence with executive clarity.",
+      "frameworks": [
+        "OJK POJK 51",
+        "GRI Standards",
+        "IDX Governance"
+      ],
+      "matchedProject": {
+        "id": "asbi",
+        "code": "ASBI",
+        "client": "Asuransi Bintang",
+        "fullName": "PT Asuransi Bintang Tbk",
+        "category": "Annual Report",
+        "year": "2023",
+        "description": "Comprehensive annual financial and corporate governance disclosure balancing strict regulatory compliance with executive editorial precision.",
+        "highlight": "Integrated annual performance publication presenting financial resilience and sustainable governance.",
+        "frameworks": [
+          "OJK POJK 51",
+          "GRI Standards 2021",
+          "IDX Corporate Governance"
+        ],
+        "keyOutcomes": [
+          "100% compliant with OJK reporting deadlines and disclosure guidelines",
+          "Transparent solvency and underwriting performance narratives",
+          "Award-nominated editorial structure and typographical hierarchy"
+        ],
+        "color": "#162b1e",
+        "aspect": "landscape",
+        "featuredQuote": "Articulating financial stability through transparent reporting.",
+        "deliverables": [
+          "Annual Financial & Governance Report",
+          "Interactive Digital PDF",
+          "Executive Highlights"
+        ]
+      }
+    },
+    {
+      "id": "kideco-23-ar",
+      "num": "02",
+      "title": "Annual Report",
+      "category": "Reporting · Corporate",
+      "client": "Kideco Jaya Agung",
+      "year": "2023",
+      "image": "/Kideco-23-AR-a-768x576.png",
+      "aspectRatio": "768 / 576",
+      "rotation": "0.6deg",
+      "summary": "Corporate operational and financial report framing large-scale energy transition and industrial stewardship.",
+      "frameworks": [
+        "GRI Standards",
+        "POJK 51",
+        "Corporate Governance"
+      ],
+      "matchedProject": {
+        "id": "kideco-ar-23",
+        "code": "KIDECO-AR",
+        "client": "Kideco Jaya Agung",
+        "fullName": "PT Kideco Jaya Agung",
+        "category": "Annual Report",
+        "year": "2023",
+        "description": "Annual corporate report framing large-scale energy transition, industrial efficiency, and strategic governance in energy production.",
+        "highlight": "Robust annual operational overview demonstrating responsible resource management.",
+        "frameworks": [
+          "GRI Standards",
+          "POJK 51",
+          "Indonesian Mining Standards"
+        ],
+        "keyOutcomes": [
+          "Detailed breakdown of energy efficiency and operational resilience",
+          "Rigorous governance and risk mitigation frameworks",
+          "Executive design system highlighting core energy benchmarks"
+        ],
+        "color": "#18382b",
+        "aspect": "landscape",
+        "deliverables": [
+          "Annual Report Dossier",
+          "Executive Presentation Deck",
+          "Digital Summary"
+        ]
+      }
+    },
+    {
+      "id": "kideco-23-sr",
+      "num": "03",
+      "title": "Sustainability Report",
+      "category": "Reporting · ESG",
+      "client": "Kideco Jaya Agung",
+      "year": "2023",
+      "image": "/Kideco-23-SR-a-768x576.png",
+      "aspectRatio": "768 / 576",
+      "rotation": "-0.5deg",
+      "summary": "Benchmark sustainability report charting post-mining ecosystem rehabilitation and PROPER Emas achievements.",
+      "frameworks": [
+        "GRI 2021",
+        "PROPER Emas",
+        "TCFD",
+        "POJK 51"
+      ],
+      "matchedProject": {
+        "id": "kideco",
+        "code": "KIDECO-SR",
+        "client": "Kideco Jaya Agung",
+        "fullName": "PT Kideco Jaya Agung",
+        "category": "Sustainability Report",
+        "year": "2023 / 2024",
+        "description": "Benchmark sustainability reporting charting post-mining ecosystem rehabilitation, community empowerment, and PROPER Emas verification.",
+        "highlight": "Beyond compliance reporting aligned with GRI Standards and PROPER Emas verification.",
+        "frameworks": [
+          "GRI Standards 2021",
+          "POJK 51",
+          "PROPER Emas Alignment",
+          "TCFD Framework"
+        ],
+        "keyOutcomes": [
+          "Comprehensive biodiversity restoration & carbon offset metrics",
+          "Detailed social investment impact across regional communities",
+          "Recognized with top regional sustainability disclosure accolades"
+        ],
+        "color": "#162b1e",
+        "aspect": "landscape",
+        "featuredQuote": "Transforming industrial stewardship into an authentic, measurable sustainability dialogue.",
+        "deliverables": [
+          "Full Sustainability Report (300+ pages)",
+          "Executive Summary Booklet",
+          "Digital Interactive PDF"
+        ]
+      }
+    },
+    {
+      "id": "kideco-24-ar",
+      "num": "04",
+      "title": "Annual Report",
+      "category": "Design · Communication",
+      "client": "Kideco Jaya Agung",
+      "year": "2024",
+      "image": "/Kideco-24-AR-a-768x512.png",
+      "aspectRatio": "768 / 512",
+      "rotation": "0.75deg",
+      "summary": "Forward-looking annual report spotlighting green business acceleration, operational innovation, and stakeholder value.",
+      "frameworks": [
+        "GRI Sector Standards",
+        "POJK 51",
+        "ISSB Aligned"
+      ],
+      "matchedProject": {
+        "id": "kideco-ar-24",
+        "code": "KIDECO-AR24",
+        "client": "Kideco Jaya Agung",
+        "fullName": "PT Kideco Jaya Agung",
+        "category": "Annual Report",
+        "year": "2024",
+        "description": "Forward-looking corporate annual report spotlighting green business acceleration, operational efficiency, and stakeholder transparency.",
+        "highlight": "Modern editorial publication presenting corporate transition milestones.",
+        "frameworks": [
+          "GRI Sector Standards",
+          "POJK 51",
+          "ISSB Climate Disclosure"
+        ],
+        "keyOutcomes": [
+          "Strategic alignment with Indonesia Net Zero Emission roadmaps",
+          "Streamlined infographics communicating complex financial metrics",
+          "Integrated bilingual editorial suite"
+        ],
+        "color": "#1b2230",
+        "aspect": "landscape",
+        "deliverables": [
+          "Annual Report Suite",
+          "Interactive Web Annex",
+          "Investor Factsheet"
+        ]
+      }
+    },
+    {
+      "id": "kideco-24-sr",
+      "num": "05",
+      "title": "Sustainability Campaign",
+      "category": "Campaign · Education",
+      "client": "Kideco Jaya Agung",
+      "year": "2024",
+      "image": "/Kideco-24-SR-a-768x614.png",
+      "aspectRatio": "768 / 614",
+      "rotation": "-0.6deg",
+      "summary": "Multi-stakeholder sustainability publication detailing circular economy initiatives and biodiversity conservation.",
+      "frameworks": [
+        "GRI 2021",
+        "SDGs 2030",
+        "OJK POJK 51"
+      ],
+      "matchedProject": {
+        "id": "kideco-sr-24",
+        "code": "KIDECO-SR24",
+        "client": "Kideco Jaya Agung",
+        "fullName": "PT Kideco Jaya Agung",
+        "category": "Sustainability Report",
+        "year": "2024",
+        "description": "Comprehensive sustainability narrative illustrating circular economy principles, clean water initiatives, and deep ecosystem regeneration.",
+        "highlight": "Deep-dive sustainability publication blending rigorous field data with inspiring visual storytelling.",
+        "frameworks": [
+          "GRI Standards 2021",
+          "UN SDGs",
+          "POJK 51",
+          "KLHK PROPER"
+        ],
+        "keyOutcomes": [
+          "High-density environmental data transformed into intuitive infographics",
+          "Verified community empowerment outcomes across 80+ partner villages",
+          "Editorial design praised by external ESG auditor panels"
+        ],
+        "color": "#153020",
+        "aspect": "portrait",
+        "deliverables": [
+          "Sustainability Report",
+          "Executive Summary Deck",
+          "Social Media Carousel Series"
+        ]
+      }
+    },
+    {
+      "id": "star-24",
+      "num": "06",
+      "title": "ESG Communication",
+      "category": "Campaign · Communication",
+      "client": "STAR Energy / Star Resources",
+      "year": "2024",
+      "image": "/STAR-24-a-768x576.png",
+      "aspectRatio": "768 / 576",
+      "rotation": "0.8deg",
+      "summary": "Clean energy communication and stakeholder publication framing geothermal excellence and community engagement.",
+      "frameworks": [
+        "GRI Energy",
+        "Renewable ESG",
+        "Stakeholder Dialogue"
+      ],
+      "matchedProject": {
+        "id": "star",
+        "code": "STAR",
+        "client": "Star Resources",
+        "fullName": "STAR Energy & Resources Ecosystem",
+        "category": "Communication",
+        "year": "2024",
+        "description": "Clean energy communication suite framing geothermal leadership, clean power generation, and community co-existence.",
+        "highlight": "Vibrant clean-energy communication inspiring stakeholder confidence.",
+        "frameworks": [
+          "GRI Energy Sector",
+          "Renewable ESG Disclosure",
+          "Community Dialogue"
+        ],
+        "keyOutcomes": [
+          "High-impact visual narratives depicting renewable geothermal potential",
+          "Transparent biodiversity and carbon avoidance metrics",
+          "Executive layout designed for investors and regulatory authorities"
+        ],
+        "color": "#182433",
+        "aspect": "landscape",
+        "deliverables": [
+          "Clean Energy Communication Report",
+          "Executive Briefing Suite",
+          "Stakeholder Infographics"
+        ]
+      }
+    },
+    {
+      "id": "wtjj-24",
+      "num": "07",
+      "title": "Company Profile",
+      "category": "Design · Communication",
+      "client": "Wika Tirta Jaya Jatiluhur",
+      "year": "2024",
+      "image": "/WTJJ-24-1-768x699.jpg",
+      "aspectRatio": "768 / 699",
+      "rotation": "-0.7deg",
+      "summary": "Strategic infrastructure profile documenting landmark drinking water supply projects and clean water access.",
+      "frameworks": [
+        "UN SDG 6",
+        "Infrastructure Disclosure",
+        "POJK 51"
+      ],
+      "matchedProject": {
+        "id": "wtjj",
+        "code": "WTJJ",
+        "client": "Wika Tirta Jaya Jatiluhur",
+        "fullName": "PT Wika Tirta Jaya Jatiluhur",
+        "category": "Annual Report",
+        "year": "2023 / 2024",
+        "description": "Drinking water infrastructure project reporting, tracking critical pipeline development and safe water supply access for Greater Jakarta.",
+        "highlight": "Infrastructure development and SDG 6 (Clean Water and Sanitation) reporting.",
+        "frameworks": [
+          "GRI Standards",
+          "POJK 51",
+          "SDG Impact Metrics"
+        ],
+        "keyOutcomes": [
+          "Clear demonstration of socioeconomic impact for 2 million urban beneficiaries",
+          "Construction environmental mitigation and watershed protection narratives",
+          "Stringent infrastructure governance and audit reporting"
+        ],
+        "color": "#172738",
+        "aspect": "portrait",
+        "deliverables": [
+          "Infrastructure Annual Review",
+          "Company Profile Suite",
+          "Impact Infographics"
+        ]
+      }
+    },
+    {
+      "id": "TEST1",
+      "num": "08",
+      "title": "ANUAL",
+      "category": "Reporting · Design",
+      "client": "AKSHDASKGF",
+      "year": "2026",
+      "image": "/ASBI-23-a-768x576.png",
+      "aspectRatio": "768 / 576",
+      "rotation": "0deg",
+      "summary": "kjsabfoqbfvsaa",
+      "frameworks": [
+        "GRI Standards",
+        "POJK 51"
+      ],
+      "matchedProject": {
+        "code": "",
+        "client": "",
+        "fullName": "",
+        "category": "Annual Report",
+        "deliverables": [
+          "Annual Report"
+        ],
+        "keyOutcomes": []
+      }
+    }
+  ],
+  "archive": [
+    {
+      "id": "kideco-23-sr",
+      "slug": "kideco-sustainability-report-2023",
+      "title": "Sustainability Report",
+      "client": "Kideco Jaya Agung",
+      "fullName": "PT Kideco Jaya Agung",
+      "category": "Sustainability Report",
+      "year": "2023",
+      "image": "/Kideco-23-SR-a-768x576.png",
+      "aspectRatio": "768 / 576",
+      "cardSpan": "wide",
+      "summary": "Landmark sustainability reporting charting post-mining ecosystem rehabilitation, energy transition, and PROPER Emas alignment.",
+      "frameworks": [
+        "GRI Standards 2021",
+        "POJK 51",
+        "PROPER Emas",
+        "TCFD"
+      ],
+      "deliverables": [
+        "Full Sustainability Report (320 pages)",
+        "Executive Summary",
+        "Digital Interactive PDF"
+      ],
+      "keyOutcomes": [
+        "Beyond compliance environmental ratings",
+        "Biodiversity regeneration indices",
+        "Regional stakeholder validation"
+      ],
+      "code": "KDC-SR23"
+    },
+    {
+      "id": "kideco-24-ar",
+      "slug": "kideco-annual-report-2024",
+      "title": "Annual Report",
+      "client": "Kideco Jaya Agung",
+      "fullName": "PT Kideco Jaya Agung",
+      "category": "Annual Report",
+      "year": "2024",
+      "image": "/Kideco-24-AR-a-768x512.png",
+      "aspectRatio": "768 / 512",
+      "cardSpan": "standard",
+      "summary": "Forward-looking corporate annual report spotlighting green business acceleration, operational innovation, and stakeholder transparency.",
+      "frameworks": [
+        "GRI Sector Standards",
+        "POJK 51",
+        "ISSB Aligned"
+      ],
+      "deliverables": [
+        "Annual Financial & Governance Report",
+        "Interactive Annex",
+        "Investor Deck"
+      ],
+      "keyOutcomes": [
+        "Net Zero 2060 roadmap alignment",
+        "Executive financial hierarchy",
+        "Audited governance metrics"
+      ],
+      "code": "KDC-AR24"
+    },
+    {
+      "id": "asbi-23",
+      "slug": "asuransi-bintang-annual-report-2023",
+      "title": "Annual Report",
+      "client": "Asuransi Bintang",
+      "fullName": "PT Asuransi Bintang Tbk",
+      "category": "Annual Report",
+      "year": "2023",
+      "image": "/ASBI-23-a-768x576.png",
+      "aspectRatio": "768 / 576",
+      "cardSpan": "standard",
+      "summary": "Comprehensive annual financial and corporate governance disclosure balancing strict regulatory requirements with editorial precision.",
+      "frameworks": [
+        "OJK POJK 51",
+        "GRI Standards",
+        "IDX Governance"
+      ],
+      "deliverables": [
+        "Annual Financial & Governance Report",
+        "Interactive Digital PDF",
+        "Executive Highlights"
+      ],
+      "keyOutcomes": [
+        "100% timely regulatory compliance",
+        "Transparent underwriting ratios",
+        "Typographic editorial clarity"
+      ],
+      "code": "ASBI-23"
+    },
+    {
+      "id": "kideco-24-sr",
+      "slug": "kideco-sustainability-campaign-2024",
+      "title": "Sustainability Campaign & Report",
+      "client": "Kideco Jaya Agung",
+      "fullName": "PT Kideco Jaya Agung",
+      "category": "Sustainability Report",
+      "year": "2024",
+      "image": "/Kideco-24-SR-a-768x614.png",
+      "aspectRatio": "768 / 614",
+      "cardSpan": "tall",
+      "summary": "Multi-stakeholder sustainability publication highlighting circular economy models, clean energy adoption, and biodiversity preservation.",
+      "frameworks": [
+        "GRI Standards 2021",
+        "UN SDGs",
+        "POJK 51"
+      ],
+      "deliverables": [
+        "Full Sustainability Report",
+        "Digital Presentation Suite",
+        "Stakeholder Collaterals"
+      ],
+      "keyOutcomes": [
+        "Data-dense infographics",
+        "Social return on investment proof",
+        "Verified stakeholder outreach"
+      ],
+      "code": "KDC-SR24"
+    },
+    {
+      "id": "star-24",
+      "slug": "star-energy-esg-communication-2024",
+      "title": "ESG Communication",
+      "client": "STAR Energy Geothermal",
+      "fullName": "Star Energy Geothermal Group",
+      "category": "Communication",
+      "year": "2024",
+      "image": "/STAR-24-a-768x576.png",
+      "aspectRatio": "768 / 576",
+      "cardSpan": "standard",
+      "summary": "Clean energy communication and stakeholder publication framing geothermal excellence, clean power generation, and community co-existence.",
+      "frameworks": [
+        "GRI Energy Sector",
+        "Renewable ESG Disclosure",
+        "Community Dialogue"
+      ],
+      "deliverables": [
+        "Clean Energy Communication Report",
+        "Executive Briefing Suite",
+        "Stakeholder Infographics"
+      ],
+      "keyOutcomes": [
+        "Geothermal milestone visualization",
+        "Carbon avoidance metrics",
+        "Public-private dialog tool"
+      ],
+      "code": "STAR-24"
+    },
+    {
+      "id": "wtjj-24",
+      "slug": "wika-tirta-jaya-company-profile-2024",
+      "title": "Company Profile & Annual Review",
+      "client": "Wika Tirta Jaya Jatiluhur",
+      "fullName": "PT Wika Tirta Jaya Jatiluhur",
+      "category": "Annual Report",
+      "year": "2024",
+      "image": "/WTJJ-24-1-768x699.jpg",
+      "aspectRatio": "768 / 699",
+      "cardSpan": "standard",
+      "summary": "Drinking water infrastructure project reporting, tracking critical pipeline development and safe water supply access for Greater Jakarta.",
+      "frameworks": [
+        "UN SDG 6",
+        "Infrastructure Disclosure",
+        "POJK 51"
+      ],
+      "deliverables": [
+        "Infrastructure Annual Review",
+        "Company Profile Suite",
+        "Impact Infographics"
+      ],
+      "keyOutcomes": [
+        "Safe water access for 2M+ citizens",
+        "Construction ESG mitigation",
+        "Stringent infrastructure governance"
+      ],
+      "code": "WTJJ-24"
+    },
+    {
+      "id": "kideco-23-ar",
+      "slug": "kideco-annual-report-2023",
+      "title": "Annual Report",
+      "client": "Kideco Jaya Agung",
+      "fullName": "PT Kideco Jaya Agung",
+      "category": "Annual Report",
+      "year": "2023",
+      "image": "/Kideco-23-AR-a-768x576.png",
+      "aspectRatio": "768 / 576",
+      "cardSpan": "tall",
+      "summary": "Corporate operational and financial report framing large-scale energy transition, industrial efficiency, and strategic resource governance.",
+      "frameworks": [
+        "GRI Standards",
+        "POJK 51",
+        "Corporate Governance"
+      ],
+      "deliverables": [
+        "Annual Report Dossier",
+        "Executive Presentation Deck",
+        "Digital Summary"
+      ],
+      "keyOutcomes": [
+        "Energy efficiency benchmarks",
+        "Risk mitigation frameworks",
+        "Executive financial typography"
+      ],
+      "code": "KDC-AR23"
+    }
+  ]
+}

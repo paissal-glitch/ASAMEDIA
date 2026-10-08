@@ -3,9 +3,10 @@ import { ArrowUp, ArrowUpRight, Mail, Phone, MapPin } from 'lucide-react';
 
 interface FooterProps {
   onOpenConsultation: () => void;
+  onNavigateToAdmin?: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onOpenConsultation }) => {
+export const Footer: React.FC<FooterProps> = ({ onOpenConsultation, onNavigateToAdmin }) => {
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
@@ -182,7 +183,22 @@ export const Footer: React.FC<FooterProps> = ({ onOpenConsultation }) => {
 
         {/* Bottom Copyright & Back to Top */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-400 font-mono">
-          <p>© 2026 ASA Media. All rights reserved.</p>
+          <div className="flex items-center gap-3">
+            <p>© 2026 ASA Media. All rights reserved.</p>
+            <span>·</span>
+            <a
+              href="/admin"
+              onClick={(e) => {
+                if (onNavigateToAdmin) {
+                  e.preventDefault();
+                  onNavigateToAdmin();
+                }
+              }}
+              className="hover:text-emerald-400 transition-colors underline decoration-neutral-700 underline-offset-4"
+            >
+              CMS Admin
+            </a>
+          </div>
 
           <button
             onClick={scrollToTop}
